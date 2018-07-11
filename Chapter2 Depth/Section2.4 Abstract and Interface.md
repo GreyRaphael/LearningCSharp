@@ -1,15 +1,11 @@
 # Interface & Abstract Class
 
-<!-- TOC -->
-
 - [Interface & Abstract Class](#interface--abstract-class)
     - [Introduction](#introduction)
     - [Abstract Class](#abstract-class)
     - [Interface](#interface)
     - [Interface inversion & unit test](#interface-inversion--unit-test)
         - [unit test](#unit-test)
-
-<!-- /TOC -->
 
 ## Introduction
 
