@@ -1,24 +1,28 @@
 # Type, Variable, Object
 
+<!-- TOC -->
+
 - [Type, Variable, Object](#type-variable-object)
-    - [C# 基本元素、类型、变量、方法](#c-%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0%E3%80%81%E7%B1%BB%E5%9E%8B%E3%80%81%E5%8F%98%E9%87%8F%E3%80%81%E6%96%B9%E6%B3%95)
+    - [C# 基本元素、类型、变量、方法](#c-基本元素类型变量方法)
         - [C# keyword](#c-keyword)
         - [C# identifier](#c-identifier)
-        - [C# 文本(字面值)](#c-%E6%96%87%E6%9C%AC%E5%AD%97%E9%9D%A2%E5%80%BC)
-        - [C# 注释、空白](#c-%E6%B3%A8%E9%87%8A%E3%80%81%E7%A9%BA%E7%99%BD)
-        - [C# 类型](#c-%E7%B1%BB%E5%9E%8B)
+        - [C# 文本(字面值)](#c-文本字面值)
+        - [C# 注释、空白](#c-注释空白)
+        - [C# 类型](#c-类型)
     - [Type, Variable, Object in Details](#type-variable-object-in-details)
         - [Type](#type)
-        - [C#类型包含的6个信息](#c%E7%B1%BB%E5%9E%8B%E5%8C%85%E5%90%AB%E7%9A%846%E4%B8%AA%E4%BF%A1%E6%81%AF)
-        - [C#的类型系统](#c%E7%9A%84%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F)
-            - [C#五大数据类型](#c%E4%BA%94%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
-            - [C#类型的派生谱系](#c%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%B4%BE%E7%94%9F%E8%B0%B1%E7%B3%BB)
-    - [C# 变量](#c-%E5%8F%98%E9%87%8F)
-        - [C# 7种变量](#c-7%E7%A7%8D%E5%8F%98%E9%87%8F)
-    - [Reference Type & Value Type](#reference-type-value-type)
+        - [C#类型包含的6个信息](#c类型包含的6个信息)
+        - [C#的类型系统](#c的类型系统)
+            - [C#五大数据类型](#c五大数据类型)
+            - [C#类型的派生谱系](#c类型的派生谱系)
+    - [C# 变量](#c-变量)
+        - [C# 7种变量](#c-7种变量)
+    - [Reference Type & Value Type](#reference-type--value-type)
         - [Vaule Type](#vaule-type)
         - [Reference Type](#reference-type)
-        - [boxing & unboxing(装箱&拆箱)](#boxing-unboxing%E8%A3%85%E7%AE%B1%E6%8B%86%E7%AE%B1)
+        - [boxing & unboxing(装箱&拆箱)](#boxing--unboxing装箱拆箱)
+
+<!-- /TOC -->
 
 ## C# 基本元素、类型、变量、方法
 
