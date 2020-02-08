@@ -222,7 +222,7 @@ namespace ConsoleApp3
 ```
 
 ```csharp
-//回掉方法例子
+//回调方法例子
 using System;
 
 namespace ConsoleApp3
@@ -256,7 +256,7 @@ namespace ConsoleApp3
     }
 
     class WrapFactory {
-        //模板方法+回掉方法
+        //模板方法+回调方法
         public Box WrapProduct(Func<Product> getProduct,Action<Product> logCallback) {
             Box box = new Box();
             Product product = getProduct();

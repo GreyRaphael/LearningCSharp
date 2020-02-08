@@ -100,9 +100,10 @@ namespace HelloRider
 - 函数成员的具体行为(版本)由对象决定
 - C#中可以用父类类型变量引用子类类型instance
 
-
 父类没有`virtual`, 子类没有`override`；子类对于父类隐藏
-```python
+
+```csharp
+// 未构成重写
 using System;
 
 namespace ConsoleApp4 {
@@ -133,6 +134,7 @@ namespace ConsoleApp4 {
 加入`virtual`, `override`可以实现polymorphism
 
 ```csharp
+// 未构成重写
 // 加入virtual override
 using System;
 
@@ -161,9 +163,9 @@ namespace ConsoleApp4 {
 }
 ```
 
-如果没有`virtual`, `override`那么结果是`I'm running`; 
+如果没有`virtual`, `override`那么结果是`I'm running`;
 
-- 相当于没有`virtual`, `override`的时候，一个Car里面有两个版本的`Run()`; 
+- 相当于没有`virtual`, `override`的时候，一个Car里面有两个版本的`Run()`;
 - 加入`virtual`, `override`后，一个Car里面只有一个版本的`Run()`;
 
 然而Java天然就是自动override, 所以注意一点；
@@ -176,7 +178,7 @@ namespace ConsoleApp4 {
     class Program {
         static void Main(string[] args) {
             // 父类类型变量引用子类类型instance;类似cpp父类型指针指向子类型数据
-            
+
             Vehicle v=new Car();
             v.Run();//Car is running
         }
@@ -215,8 +217,8 @@ class Vehicle{
 }
 
 class Car extends Vehicle{
-//    不加Override这个检查用的东西，也可override
-//    @Override
+//  不加Override这个检查用的东西，也可override
+    @Override
     public void Run() {
         System.out.println("Car is running");
     }
@@ -332,7 +334,7 @@ namespace ConsoleApp4 {
 }
 ```
 
-### `function members`
+1. `function members`
 
 函数成员不仅是`method`, `property`也可以作为函数成员；详细参考前面的[C# 语言规范](https://www.ecma-international.org/publications/standards/Ecma-334.htm)
 
@@ -385,15 +387,15 @@ namespace ConsoleApp4 {
 }
 ```
 
-### visible(可见)
+2. 对子类visible(可见)
 
 当父类是`public`或者`protected`的时候，是可见的
 
-### 签名一致
+3. 签名一致
 
 父子类：方法名，参数列表一致
 
-### 代差
+4. 代差
 
 因为python的类型没有前缀，变量的类型都是跟着instance的走的；所以不需要用到父类指针指向子类instance; 所以python, js有override, 但是没有csharp, java中的这种polymorphism; 但是可以通过第三方的lib实现奇葩操作；
 
@@ -416,7 +418,7 @@ class RaceCar(Car):
 
 
 v = Vehicle()
-v.run()
+v.run() # I'm running
 v = RaceCar()
-v.run()
+v.run() # Race car is running
 ```

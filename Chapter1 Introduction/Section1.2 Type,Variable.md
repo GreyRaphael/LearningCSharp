@@ -24,10 +24,11 @@
 
 <!-- /TOC -->
 
-## C# 基本元素、类型、变量、方法
+## C# 基本元素、[类型、变量](https://docs.microsoft.com/zh-cn/dotnet/csharp/tour-of-csharp/types-and-variables)、方法
 
 构成C#的基本元素
 
+```text
 $$
 \text{标记}(token)\begin{cases}
     Keyword\\
@@ -55,6 +56,8 @@ $$
     \text{多行注释}
 \end{cases}
 $$
+
+```
 
 ### C# keyword
 
@@ -84,6 +87,47 @@ $$
 - class的成员method最好用动词或者动词短语
 
 ### C# 文本(字面值)
+
+[整型数值类型]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/integral-numeric-types
+[浮点数值类型]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/floating-point-numeric-types
+[字符]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/char
+[字符串]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/reference-types
+[布尔]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/bool
+[null]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/null
+[建议的文档注释标记]: https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/xmldoc/recommended-tags-for-documentation-comments
+[XML 文档注释]: https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/xmldoc/index
+
+[数据类型]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/built-in-types-table
+[值类型]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/value-types
+[引用类型]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/reference-types
+[内置引用类型]: https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/reference-types
+
+[整型数值类型]
+
+| C# 类型/关键字 | 范围 | 大小 |
+|:----:|:--------------------:|:------------------------|
+| sbyte | -128 ~ 127          | 8 位带符号整数            |
+| byte  | 0 ~ 255             | 无符号的 8 位整数         |
+| short | -32,768 ~ 32,767    | 有符号 16 位整数          |
+| ushort| 0 ~ 65,535          | 无符号 16 位整数          |
+| int   | -2,147,483,648 ~ 2,147,483,647 | 带符号的 32 位整数 |
+| uint  | 0 ~ 4,294,967,295   | 无符号的 32 位整数        |
+| long  | -9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807 | 64 位带符号整数 |
+| ulong | 0 ~ 18,446,744,073,709,551,615 | 无符号 64 位整数 |
+
+[浮点数值类型]
+
+| C# 类型/关键字 | 大致范围 | 精度 | 大小 |
+|:------------:|:-------:|:----|------|
+| float   | ±1.5 x 10<sup>−45</sup> ~ ±3.4 x 10<sup>38</sup>     | 大约 6-9 位数字   | 4 个字节 |
+| double  | ±5.0 × 10<sup>−324</sup> ~ ±1.7 × 10<sup>308</sup>  | 大约 15-17 位数字 | 8 个字节 |
+| decimal | ±1.0 x 10<sup>-28</sup> ~ ±7.9228 x 10<sup>28</sup> | 28-29 位       | 16 个字节 |
+
+[字符]
+
+| C# 类型/关键字 | 范围 | 大小 |
+|:----:|:---------------:|:-----|
+| char | U+0000 ~ U+FFFF | 16 位
 
 ```csharp
 //integer
@@ -128,7 +172,7 @@ comment*/
 Type(或者Data Type)
 
 ```csharp
-//Tyep example
+//Type example
 using System;
 
 namespace ConsoleApp1
@@ -181,7 +225,7 @@ Boolean
 ```
 
 ```csharp
-//functin example
+//function example
 using System;
 
 namespace ConsoleApp1
@@ -631,19 +675,20 @@ Build将自己compile的assembly和别人的assemble装配在一起, Build产生
 C#各种各样的类型归为以下几类：
 
 1. class, 如`Windows`, `Form`, `Console`, `String`,`string`,`object`
-1. struct, 如`Int32`, `Int64`, `Single`, `Double`,`bool`
-1. enum, 如`FormWindowState`, `Visibility`
-1. interface,
-1. delegate,
+2. struct, 如`Int32`, `Int64`, `Single`, `Double`,`bool`
+3. enum, 如`FormWindowState`, `Visibility`
+4. interface,
+5. delegate,
 
-通过F12（右击/go to definition）查看某个单词的数据类型
+通过F12（右击/go to definition）查看数据类型
 
 `class`声明类，`struct`声明结构体，`enum`声明枚举
 
-`class`, `interface`, `delegate`不是具体的数据类型，是为了定义数据类型，F12无法跳转; vs中class,interface,delegate是蓝色的(不可F12)，Form,Int32,FormwindowState是水蓝色的(可F12)
+`class`, `interface`, `delegate`不是具体的数据类型，是为了定义数据类型，F12无法跳转
 
 #### C#类型的派生谱系
 
+```text
 $$
 Object\begin{cases}
 	ValueType\begin{cases}
@@ -657,6 +702,7 @@ Object\begin{cases}
 \end{cases}
 \end{cases}
 $$
+```
 
 ```csharp
 //判断是否是class

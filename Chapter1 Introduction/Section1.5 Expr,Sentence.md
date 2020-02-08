@@ -150,6 +150,7 @@ C#语句大类：
 - declaration-statement
 - embedded-statement(嵌入语句，能够嵌入到其他语句体中的语句，比如if里面能够嵌入if)
 
+```text
 $$
 C\#\ statement\begin{cases}
 	labeled-statement\\
@@ -170,6 +171,7 @@ C\#\ statement\begin{cases}
 \end{cases}
 \end{cases}
 $$
+```
 
 `var`一旦推断出某个变量的类型，那么这个变量的类型就不能改变了;
 
@@ -685,11 +687,10 @@ static void Main(string[] args)
 }
 ```
 
-### `foreach`
-
 C#中实现了`IEnumerable`interface的class就是可以被foreach遍历的集合
 
 ```csharp
+// foreach example
 using System;
 using System.Collections.Generic;
 

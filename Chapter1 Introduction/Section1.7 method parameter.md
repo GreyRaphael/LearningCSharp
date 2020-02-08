@@ -503,7 +503,7 @@ namespace ConsoleApp10
 给使用的类型追加其他类型的方法；
 
 - 所在的方法必须是`public static`
-- 必须是参数列表第一个
+- `this`参数必须是参数列表第一个
 - 必须由一个`static class SometypeExtension`来统一收纳对`Sometype`类型的方法
 
 static class中的东西都是必须是static修饰，而且static不能创建对象；
@@ -528,6 +528,8 @@ namespace ConsoleApp11
         }
     }
 
+    // Extension 后缀为添加扩展方法时所在类的类名的约定
+    // DoubleExtension 为 double 类 的扩展
     static class DoubleExtension {
         public static double Round(this double input,int digits) {
             double res = Math.Round(input, digits);
