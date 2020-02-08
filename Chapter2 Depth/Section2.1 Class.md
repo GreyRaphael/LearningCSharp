@@ -62,21 +62,21 @@ namespace Chapter23_Class {
 
     class Student {
         public int ID { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public void Report() {
             Console.WriteLine($"My ID is #{this.ID},my Name is {this.Name}.");
         }
     }
 
     class Teacher {
-        //constructor,一般不写
+        //constructor,一般不写 构造器
         public Teacher(int id,string name) {
             this.ID = id;
             this.Name = name;
         }
         //destructor,一般不写
         ~Teacher() {
-            Console.WriteLine("ByeBye"); 
+            Console.WriteLine("ByeBye");
         }
         public int ID { get; set; }
         public String Name { get; set; }
@@ -178,9 +178,12 @@ namespace _03staticCtor {
             Amount++;
         }
         public int ID { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public void Report() {
             Console.WriteLine($"My ID is #{this.ID},my Name is {this.Name}.");
+        }
+        ~Student() {
+            Amount--;
         }
     }
 }
@@ -194,7 +197,7 @@ namespace _03staticCtor {
 
 ## Class Declarations & inheirt & 3p
 
-要说声明(delcare)了一个Class, 而说创建(create)一个instance(object)
+要说声明(declare)了一个Class, 而说创建(create)一个instance(object)
 
 Class declaration的位置：
 
@@ -218,7 +221,7 @@ namespace _04declaration {
 
     class Student {
         public int ID { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public void Report() {
             Console.WriteLine($"My ID is #{this.ID},my Name is {this.Name}.");
         }
@@ -228,7 +231,7 @@ namespace _04declaration {
 namespace MyNamespace {
     class Teacher {
         public int ID { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public void Say() {
             Console.WriteLine($"I'm a Teacher, ID={ID},Name={Name}.");
         }
@@ -245,7 +248,7 @@ class Computer {
 
 **declare**(declaration) vs **define**(definition)
 
-c/c++中的delcare和define不同:
+c/c++中的declare和define不同:
 
 - Add/Class/自动生成`.h`和`.cpp`文件，其中`.h`为声明，`.cpp`为定义
 - 当然也可以将`.cpp`中的东西放到`.h`中，即声明和定义在一起

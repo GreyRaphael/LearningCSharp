@@ -52,6 +52,8 @@ null合并|`??`
 条件|`?:`
 赋值与Lambda|`= *= /= %= += -= <<= >>= &= ^= |= =>`
 
+## 自定义操作符
+
 operator的本质是对函数（算法）的“简记”，被操纵的对象叫做“操作数”（operand），让算式更短
 
 计算机语言中的操作符不能与其相关联的数据类型脱离(`Console.WriteLine(5/4);`结果为1，其中`/`与`int`关联)
@@ -96,6 +98,7 @@ namespace ConsoleApp7
             return people;
         }
 
+        // 自定义操作符
         public static List<Person> operator +(Person p1, Person p2) {
             List<Person> people = new List<Person>();
             people.Add(p1);
@@ -130,7 +133,9 @@ Grey&Jane's child
 Grey&Jane's child
 ```
 
-成员访问操作符`.`:
+## base operator
+
+### `.`成员访问操作符
 
 - 访问外层名称空间的子集名称空间
 - 访问名称空间的类型
@@ -138,7 +143,7 @@ Grey&Jane's child
 - 访问对象的成员
 
 ```csharp
-//
+// .
 using System;
 
 namespace ConsoleApp8
@@ -153,7 +158,7 @@ namespace ConsoleApp8
 }
 ```
 
-C#中只要出现了方法的名字，不一定跟着一个`()`(方法调用操作符)，因为可能涉及delegate
+> C#中只要出现了方法的名字，不一定跟着一个`()`(方法调用操作符)，因为可能涉及delegate
 
 ```csharp
 //delegate
@@ -207,13 +212,13 @@ namespace ConsoleApp9
 }
 ```
 
-[x++ vs ++x](https://microindie.github.io/2017/01/09/x++and++x/)
+### [x++ vs ++x](https://microindie.github.io/2017/01/09/x++and++x/)
 
 p++时先把p放到eax，然后加1放到edx，再把edx存回p，也就是说p++立马把p改了，只是后来使用用的是eax寄存器中的值，就是加1之前的值。这里p++需要三条指令。(在寄存器中+1)
 
 而++p在x86里实际只需要一条对内存中p加1的指令`addl $1, -16(%ebp)`，后面如果要使用++p则将其加载到寄存器中来，而如果只进行加1操作不使用值，只需要一条指令。(内存原地+1)
 
-`typeof`查看类型的内部结构(Metadata)
+### `typeof`查看类型的内部结构(Metadata)
 
 Metadata包含：
 
@@ -264,7 +269,7 @@ Int32 GetHashCode()
 System.Type GetType()
 ```
 
-`default`获取类型默认值
+### `default`获取类型默认值
 
 - 结构体类型
 - 引用类型
@@ -304,7 +309,7 @@ namespace ConsoleApp8
 }
 ```
 
-## `new` operator
+### `new` operator
 
 `new`操作符, 创建一个实例，并调用实例构造器`()`，通过`=`将instance的地址给引用变量；
 
@@ -383,7 +388,7 @@ namespace ConsoleApp2
 }
 ```
 
-## `checked` & `unchecked` operator
+### `checked` & `unchecked` operator
 
 检查一个值在内存中是不是有溢出；
 
@@ -420,7 +425,7 @@ namespace ConsoleApp3
 }
 ```
 
-```csahrp
+```csharp
 //unchecked, result is 0
 using System;
 
@@ -442,7 +447,7 @@ namespace ConsoleApp3
         }
     }
 }
-````
+```
 
 ```csharp
 //checked, result is Overflow
@@ -470,7 +475,7 @@ namespace ConsoleApp3
 }
 ```
 
-## `delegate`
+### `delegate`
 
 `delegate`最常用的是声明一种委托数据类型，用于operator过时(因为Lambda表达式的出现，不需要delegate)
 
@@ -517,7 +522,7 @@ public partial class MainWindow : Window {
 }
 ```
 
-## `sizeof`
+### `sizeof`
 
 获取结构体数据类型的对象在内存中所占的字节数；
 
@@ -553,7 +558,7 @@ namespace ConsoleApp4
 }
 ```
 
-## `->` operator
+### `->` operator
 
 必须是unsafe，C#中的指针操作、取地址操作、指针访问成员操作只能是对结构体
 
@@ -586,11 +591,27 @@ namespace ConsoleApp5
 }
 ```
 
+### `=`赋值
+
+`x++`：拿到寄存器++
+
+`++x`：在内存原地++
+
+单独使用`x++`,`++x`，是没有差异的，只有在出现赋值号`=`的时候，或者左值、右值才会出现差异；
+
 ## 一元操作符
 
-`-`:取相反数，所以`--x`与`-(-x)`是不相同的；求相反数算法：按位取反加1；
+### `+`,`-`,`～`,`!`
 
-然而，`-`会造成溢出；`-128~127`
+`+`:与数学的`+`相同 - `x === +x`
+
+`-`:取相反数 - 按位取反再加1
+
+`~`:求反 - 按位取反
+
+- 在不溢出的情况下与数学的`-`相同
+- 所以`--x`与`-(-x)`是不相同的
+- `-`会造成溢出
 
 ```csharp
 using System;
@@ -604,12 +625,12 @@ namespace ConsoleApp6
             Console.WriteLine(int.MaxValue);//2147483647
             Console.WriteLine(int.MinValue);//-2147483648
             int x = int.MinValue;
-            Console.WriteLine(Convert.ToString(x,2).PadRight(32,'0'));
-            int y = -x;
+            Console.WriteLine(Convert.ToString(x,2).PadLeft(32,'0')); // 10000000000000000000000000000000
+            int y = -x; // 溢出
             Console.WriteLine(y);//-2147483648
-
-            int x2 = 123;
-            Console.WriteLine(Convert.ToString(x2, 2).PadLeft(32,'0'));
+            int z = ～x;
+            Console.WriteLine(z);//2147483647
+            Console.WriteLine(Convert.ToString(z,2).PadLeft(32,'0'));// 01111111111111111111111111111111
         }
     }
 }
@@ -643,15 +664,7 @@ namespace ConsoleApp7
 }
 ```
 
-## `=`赋值
-
-`x++`：拿到寄存器++
-
-`++x`：在内存原地++
-
-单独使用`x++`,`++x`，是没有差异的，只有在出现赋值号`=`的时候，或者左值、右值才会出现差异；
-
-## `await`操作符
+### `await`操作符
 
 异步操作才会用到
 
@@ -760,12 +773,12 @@ namespace CSharp
 
 ```csharp
 static void Main(string[] args)
-    {
-        int x = 100;
-        object obj = x;//boxing,object default is 4Byte
-        int y = (int)obj;//unboxing
-        Console.WriteLine(y);//100
-    }
+{
+    int x = 100;
+    object obj = x;//boxing,object default is 4Byte
+    int y = (int)obj;//unboxing
+    Console.WriteLine(y);//100
+}
 ```
 
 ### explicit
@@ -794,15 +807,15 @@ Table:<<C# language specificaion>> Chapter6.1.2
 
 ```csharp
 static void Main(string[] args)
-    {
-        int x = 100;
-        object obj = x;//boxing,object default is 4Byte
-        int y = (int)obj;//unboxing
-        Console.WriteLine(y);//100
-    }
+{
+    int x = 100;
+    object obj = x;//boxing,object default is 4Byte
+    int y = (int)obj;//unboxing
+    Console.WriteLine(y);//100
+}
 ```
 
-#### `class Convert`
+#### [`class Convert`](https://docs.microsoft.com/zh-cn/dotnet/api/system.convert?view=netframework-4.8)
 
 19种重载，够用，包括了下面的ToString,Parse,TryParse
 
@@ -860,6 +873,7 @@ namespace CSharp
     class Stone
     {
         public int Age { get; set; }
+        // 自定义显式类型转换
         public static explicit operator Monkey(Stone stone){
             Monkey m=new Monkey();
             m.Age=stone.Age/500;
@@ -895,6 +909,7 @@ namespace CSharp
     class Stone
     {
         public int Age { get; set; }
+        // 自定义隐式类型转换
         public static implicit operator Monkey(Stone stone){//修改这里
             Monkey m=new Monkey();
             m.Age=stone.Age/500;
@@ -910,6 +925,30 @@ namespace CSharp
 ```
 
 ## 二元运算符
+
+### [算术运算符](https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/operators/arithmetic-operators#multiplication-operator-)
+
+- `*` 乘
+- `/` 除
+- `+` 加
+- `-` 减
+- `%` 取余
+
+### [位运算符和移位运算符](https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators)
+
+- `&` 逻辑’与‘
+- `|` 逻辑或
+- `^` 逻辑异或
+- `<<` 左移 - 在没有溢出时，相当于乘 2
+- `>>` 右移 - 在没有溢出时，相当于除 2
+
+```csharp
+int x = 7;
+int y = x << 1;
+Console.WriteLine(Convert.ToString(x,2).PadLeft(32,'0'));// 00000000000000000000000000000111
+Console.WriteLine(y); // 14
+Console.WriteLine(Convert.ToString(y,2).PadLeft(32,'0'));// 00000000000000000000000000001110
+```
 
 如果两边的数据类型不同，会自动进行数值提升；
 

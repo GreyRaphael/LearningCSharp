@@ -14,19 +14,21 @@
 具体类(concrete class)→抽象类(abstract class)→接口(class): 越来越抽象，内部实现的东西越来越少;
 
 重点:
+
 - 接口与抽象类的区别，以及用法的不同
 - 用接口与抽象类写的代码易于测试、维护
 
 设计模式学习前提：要先学接口、抽象类; 了解了SOLID设计原则;
 
 SOLID设计原则:
+
 - SRP: Single Responsibility Principle, 单一职责原则
 - OCP: Open-Closed Principle, 开放关闭原则
 - LSP: Liskov substitution principle, Liskov替换原则
 - ISP: Interface segregation principle, 接口隔离原则
 - DIP: Dependnecy Inversion Principle, 依赖反转原则
 
-由这5中Principles孕育了几十种设计模式;
+由这5种Principles孕育了几十种设计模式;
 
 ## Abstract Class
 
@@ -49,11 +51,13 @@ namespace ConsoleApp1 {
 ```
 
 抽象类的作用:
+
 - 因为method没有被实现，所以抽象类不允许instantialize;
 - 让子类继承, 在子类中实现`abstract` method;
 - 用`abstract` class声明变量，然后引用子类的instance, 产生多态的效果;
 
 Attention:
+
 - `virtual`是有方法体的, 让子类`override`; 然而`abstract`连方法体都没有，其中的`abstract` method也叫做**纯虚方法**;
 - 开闭原则: 将不变的成员封装，将会改变的成员声明成`abstract`
 
@@ -111,7 +115,7 @@ namespace ConsoleApp1 {
         }
         // 采用virtual+override
         public virtual void Run() {
-            
+
         }
     }
 
@@ -130,7 +134,7 @@ namespace ConsoleApp1 {
 ```
 
 ```csharp
-// 采用abstract class; 
+// 采用abstract class
 //因为class Vehicle中的Run是空的方法体,干脆方法体也不要了, 所以直接进行abstract
 using System;
 
@@ -257,10 +261,12 @@ namespace ConsoleApp1 {
 interface的解耦功能比abstract class的更强;
 
 Summary:
+
 - `abstract class`为作为基类而生;
 - `interface`为解耦而生;
 
 关于内部的method:
+
 - `interface`中的method必须是`public`(隐式)
 - `abstract class`中的method不能是`private`(`protected`, `internal`)
 
@@ -488,6 +494,7 @@ namespace ConsoleApp5 {
 ```
 
 设计接口的方式:
+
 - 自底向上(重构): 一般程序员
 - 自顶向下(设计): CTO
 
@@ -502,10 +509,10 @@ using System;
 namespace ConsoleApp6 {
     class Program {
         static void Main(string[] args) {
-            
+
         }
     }
-    
+
     // 为了让其他assembly看到加上public
     public interface IPowerSupply {
         int GetPower();

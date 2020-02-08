@@ -98,13 +98,13 @@ namespace ConsoleApp1
 
 Attention:
 
-- `sealed`修饰的`class`不能作为base-class
+- `sealed`修饰的`class`为封闭类，不能作为base-class
 - C#中一个class最多只能有一个base-class，可以有多个base-interface；C++中可以有多个base-class；
-- 子类的访问级别不能超过base-class；默认是`internal`(assembly级别)
+- 子类的访问级别不能超过base-class的访问级别；默认是`internal`(assembly级别)
 
 ## inheritance affect 类成员的访问
 
-继承的本质：派生类在base-class已有的**成员**的基础上，对base-class进行**横向和纵向**的扩展
+**继承的本质**：派生类在base-class已有的**成员**的基础上，对base-class进行**横向和纵向**的扩展
 
 - 当继承发生的时候，子类对父类是**全盘继承**的
 - 派生的过程中，进行的是扩展(member只能越来越多，不能越来越少)。所以类库设计的时候，不要贸然引入新的类成员，因为很可能造成继承链、api的污染
@@ -207,6 +207,11 @@ namespace ConsoleApp3
     }
 
     class Car:Vehicle {
+        // 方法一
+        public Car():base(“N/A”) {
+            this.name = "Grey"
+        }
+        // 方法二
         public Car(string name):base(name) {
             //这里可以空着
         }

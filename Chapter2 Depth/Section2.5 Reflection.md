@@ -20,10 +20,12 @@
 Reflection通常与interface配合使用;
 
 接口中的契约: 提供方不会**少给**, 使用方不会**多要**:
+
 - 少给: 提供方必须实现所有的方法, 如果只是实现到`abstract class`那么照样不能实例化;
 - 多要: 传递给使用方的方法，使用方没有用完; 也就是传入的interface太胖了;
 
 related SOLID:
+
 - SOLID中的I: 接口隔离原则，(不能**多要**)
 - SOLID中的S: 单一职责原则，一个class只做一件事或者一组相关的事;
 
@@ -34,6 +36,7 @@ related SOLID:
 ## fat interface
 
 interface太胖原因:
+
 - 设计失误, 一个interface里面包含太多method: 将胖interface拆分，弄成多个本质不同的小的interface
 - 多个interface合并导致的胖接口
 
@@ -227,7 +230,7 @@ namespace ConsoleApp8 {
 
 //            public object Current {
 //                get {
-//               //_collection._array[_head]是structure类型,需要boxing成引用类型          
+//               //_collection._array[_head]是structure类型,需要boxing成引用类型
 //                    object o = _collection._array[_head];
 //                    return o;
 //                }
@@ -260,7 +263,7 @@ namespace ConsoleApp9 {
             // 这个wk无法看到love()
             IKiller wk2 = wk1;
             wk2.kill();
-            
+
             // Killer到WarmKiller
             // 这个wk无法看到love()
             IKiller wk3 = new WarmKiller();
